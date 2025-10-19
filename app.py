@@ -24,7 +24,7 @@ def seasons():
 
 @app.route('/bookings')
 def bookings():
-    return render_template('bookings.html')
+    return render_template('booking.html')
 
 # База данных - JSON файлы
 DATA_DIR = 'data'
@@ -172,3 +172,4 @@ init_data()
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=False)
+
