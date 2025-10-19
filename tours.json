@@ -1,0 +1,56 @@
+[
+  {
+    "id": "santorini",
+    "name": "Santorini Luxury Tour Package",
+    "image": "https://static.wixstatic.com/media/81b99f_df5e9da19f464d0bb96bc15670b9d4b1~mv2.jpg/v1/crop/x_0,y_121,w_2738,h_1583/fill/w_602,h_348,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/dreamstime_l_146011399.jpg",
+    "price": "€2,500",
+    "duration": "7 days",
+    "hotel": "5-star Luxury",
+    "description": "Experience the breathtaking beauty of Santorini with our luxury tour package. Enjoy stunning caldera views, private pools, and premium amenities."
+  },
+  {
+    "id": "malta",
+    "name": "Malta Cultural Experience Tour",
+    "image": "https://relax-yachting.com/images/Malta/marshrut_malta5.jpg",
+    "price": "€1,800",
+    "duration": "8 days",
+    "hotel": "4-star Boutique",
+    "description": "Discover the rich history and stunning coastline of Malta. Explore historic sites, traditional fishing villages, and enjoy authentic Maltese cuisine."
+  },
+  {
+    "id": "preikestolen",
+    "name": "Preikestolen Adventure Tour",
+    "image": "https://yaturisto.ru/wp-content/uploads/2019/03/image-8-e1551713874892.jpg",
+    "price": "€1,200",
+    "duration": "5 days",
+    "hotel": "3-star Hotels",
+    "description": "Embark on an adventure to Preikestolen in Norway. Experience breathtaking Norwegian nature, fjord cruises, and guided hikes."
+  },
+  {
+    "id": "madeira",
+    "name": "Madeira Island Paradise Tour",
+    "image": "https://btblady.com/_nw/310/s77946330.jpg",
+    "price": "€1,600",
+    "duration": "6 days",
+    "hotel": "4-star Hotels",
+    "description": "Explore the beautiful island of Madeira with its lush green landscapes, flower gardens, and year-round mild climate."
+  },
+  {
+    "id": "lake-bled",
+    "name": "Lake Bled Alpine Retreat Tour",
+    "image": "https://wall-style.com.ua/tmp/cache/images/f2/509/f2509b2665e81cb4a12906d501b229ab.jpg",
+    "price": "€900",
+    "duration": "4 days",
+    "hotel": "3-star Hotels",
+    "description": "Experience the picturesque Alpine setting of Lake Bled. Enjoy traditional boat rides, castle visits, and hiking in Triglav National Park."
+  },
+  {
+    "id": "amalfi",
+    "name": "Amalfi Coast Italian Escape Tour",
+    "image": "https://avatars.mds.yandex.net/i?id=8f7185c50c69019540c6be7cfe9374c464b7f94b-5219859-images-thumbs&n=13",
+    "price": "€2,200",
+    "duration": "7 days",
+    "hotel": "4-star Hotels",
+    "description": "Discover the stunning Amalfi Coast with its charming towns, spectacular sea views, and authentic Italian cuisine."
+  }
+]
