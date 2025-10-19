@@ -20,7 +20,7 @@ To run the Wander Europe web application on your local machine, follow these ste
 
 Clone the repository to your local machine using the following command:
 
-git clone https://github.com/yourusername/wander-europe.git
+git clone https://github.com/AkezhanY/A-Flask-based-web-application-for-booking-European-tours..git
 
 2. Install Dependencies
 
