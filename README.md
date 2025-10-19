@@ -1,82 +1,68 @@
-Wander Europe - Tour Booking Website
+🎯 Project Description
+Wander Europe is a full-featured web application for booking European tours, developed in Python using the Flask framework. The application provides users with an intuitive interface for searching, viewing, and booking tours, as well as managing their reservations.
 
-Wander Europe is a Flask-based web application designed to allow users to browse and book tours across Europe. The platform provides a seamless experience for users to register, log in, explore various tours, and manage bookings.
+Live application: https://a-flask-based-web-application-for-7cdv.onrender.com
 
-Features
+🛠 Technology Stack
+Backend:
+Python 3.9+ - main programming language
 
-User Registration and Authentication: Users can create accounts, log in, and manage their profiles.
+Flask 2.3.3 - web framework for request processing
 
-Tour Browsing: Discover various European tours with details like price, duration, and description.
+Werkzeug - WSGI utilities for Flask
 
-Booking Management: Book your favorite tours, manage your bookings, and track your trip status.
+Jinja2 - template engine for HTML pages
 
-Responsive Design: The website is designed to be fully responsive, ensuring it works smoothly on desktops, tablets, and mobile devices.
+Frontend:
+HTML5 - web page structure
 
-Installation
+CSS3 - styling and responsive design
 
-To run the Wander Europe web application on your local machine, follow these steps:
+JavaScript - interactivity and API integration
 
-1. Clone the Repository
+REST API - client-server communication
 
-Clone the repository to your local machine using the following command:
+Database:
+JSON files - lightweight data storage
 
-git clone https://github.com/AkezhanY/A-Flask-based-web-application-for-booking-European-tours..git
+Flask Sessions - user state management
 
-2. Install Dependencies
+Deployment:
+Render.com - cloud hosting platform
 
-Navigate to the project directory and install the required dependencies:
+Git/GitHub - version control and CI/CD
 
-cd wander-europe
-pip install flask
+⚙️ Functional Capabilities
+🔐 Authentication System
+New user registration
 
-3. Run the Application
+Login with credentials validation
 
-Once dependencies are installed, you can run the app using:
+User session management
 
-python app.py
+Secure logout system
 
-4. Access the Website
+🗺️ Tour Management
+Browse available tour catalog
 
-Open a web browser and go to:
+Detailed information for each tour
 
-http://127.0.0.1:5000
+Tour filtering and search
 
+Visual presentation with images
 
-You should now be able to access the application locally.
+📅 Booking System
+Booking selected tours
 
-Technologies
+View booking history
 
-The Wander Europe application is built using the following technologies:
+Booking status management
 
-Python: The backend logic is written in Python.
+Automatic ID and date assignment
 
-Flask: A lightweight web framework used to handle routes, views, and server-side logic.
+📊 Analytics and Statistics
+Booking statistics
 
-HTML/CSS/JavaScript: The frontend of the site is built using HTML for structure, CSS for styling, and JavaScript for interactivity.
+Popular destinations analysis
 
-JSON Database: Data (e.g., user accounts, tours, bookings) is stored in JSON files for simplicity.
-
-Folder Structure
-
-Here’s a brief overview of the project’s directory structure:
-
-wander-europe/
-│
-├── app.py            # Main Python file for the app logic
-├── requirements.txt  # List of dependencies for the project
-├── templates/        # HTML templates for the pages
-│   ├── index.html    # Main page
-│   ├── statistics.html  # Statistics page
-│   ├── tours.html    # Tours page
-│   ├── bookings.html # Bookings page
-│   ├── seasons.html  # Seasons page
-│   └── ...           # Other HTML pages
-├── static/           # Static files (CSS, JS, images)
-│   ├── css/          # Stylesheets
-│   ├── js/           # JavaScript files
-│   └── images/       # Images for the website
-├── data/             # Directory for JSON database files
-│   ├── tours.json    # Tour information
-│   ├── users.json    # User data
-│   └── bookings.json # User bookings
-└── README.md   
+Data visualization
