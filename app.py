@@ -1,12 +1,10 @@
-﻿from flask import Flask, render_template, request, jsonify, session, redirect, url_for
+from flask import Flask, render_template, request, jsonify, session, redirect, url_for
 import json
 import os
 from datetime import datetime
 
 app = Flask(__name__, template_folder='templates')
-
-app.secret_key = 'wander-europe-secret-key-2024'
-
+app.secret_key = os.environ.get('SECRET_KEY', 'dev-fallback-key')
 
 @app.route('/')
 def index():
@@ -24,9 +22,9 @@ def tours():
 def seasons():
     return render_template('seasons.html')
 
-@app.route('/booking')
+@app.route('/bookings')
 def bookings():
-    return render_template('booking.html')
+    return render_template('bookings.html')
 
 # База данных - JSON файлы
 DATA_DIR = 'data'
@@ -41,6 +39,7 @@ def load_json(file_path):
     return []
 
 def save_json(file_path, data):
+    os.makedirs(os.path.dirname(file_path), exist_ok=True)
     with open(file_path, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
@@ -132,8 +131,6 @@ def api_user():
         })
     return jsonify({'error': 'Not logged in'}), 401
 
-# ===== HTML ROUTES =====
-
 # ===== ИНИЦИАЛИЗАЦИЯ ДАННЫХ =====
 def init_data():
     """Создает начальные данные если их нет"""
@@ -169,7 +166,9 @@ def init_data():
         ]
         save_json(TOURS_FILE, initial_tours)
 
+# Инициализация при запуске
+init_data()
+
 if __name__ == '__main__':
-    os.makedirs(DATA_DIR, exist_ok=True)
-    init_data()
-    app.run(debug=True, port=5000)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=False)
