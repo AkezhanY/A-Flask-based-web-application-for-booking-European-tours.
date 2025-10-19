@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Explore Europe - Travel Agency</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <style>
+    /* ===== Base Styles ===== */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100..900&family=Turret+Road:wght@200;300;400;500;700;800&display=swap');
+
+    * {
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-padding-top: 2rem;
+      scroll-behavior: smooth;
+      list-style: none;
+      text-decoration: none;
+    }
+
+    :root {
+      --main-color: #FE5B3D;
+      --second-color: #FFAC38;
+      --text-color: #444444;
+      --gradient: linear-gradient(#FE5B3D, #FFAC38);
+    }
+
+    html::-webkit-scrollbar {
+      width: 0.5rem;
+    }
+    html::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    html::-webkit-scrollbar-thumb {
+      background: var(--main-color);
+      border-radius: 5rem;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* ===== Header ===== */
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #EEEFF1;
+      padding: 15px 100px;
+    }
+
+    .logo img {
+      width: 40px;
+    }
+
+    .navbar {
+      display: flex;
+    }
+    .navbar li {
+      position: relative;
+    }
+    .navbar a {
+      font-size: 1rem;
+      padding: 10px 20px;
+      color: var(--text-color);
+      font-weight: 500;
+    }
+    .navbar a::after {
+      content: '';
+      width: 0;
+      height: 3px;
+      background: var(--gradient);
+      bottom: -4px;
+      left: 0;
+      transition: .5s;
+      position: absolute;
+    }
+    .navbar a:hover::after {
+      width: 100%;
+    }
+
+    #menu-icon {
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 110;
+      display: none;
+    }
+
+    /* ===== Main Content ===== */
+    main {
+      padding-top: 90px;
+      background-color: #fff;
+      max-width: 1200px;
+      margin: 0 auto;
+      box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    }
+
+    /* Hero Section */
+    .investment-hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 80px 50px;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    }
+
+    .investment-text {
+      flex: 1;
+      padding-right: 40px;
+    }
+
+    .investment-text h1 {
+      font-size: 2.8rem;
+      color: #2c3e50;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .investment-text p {
+      font-size: 1.2rem;
+      color: #555;
+      margin-bottom: 30px;
+    }
+
+    .investment-stats {
+      display: flex;
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .stat-item {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      text-align: center;
+      flex: 1;
+    }
+
+    .stat-item h3 {
+      color: #27ae60;
+      font-size: 2rem;
+      margin-bottom: 5px;
+    }
+
+    .stat-item p {
+      color: #7f8c8d;
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    .investment-image {
+      flex: 1;
+    }
+
+    .investment-image img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 12px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+
+    /* Projects Section */
+    .projects {
+      padding: 60px 20px;
+    }
+
+    .heading {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .heading span {
+      font-weight: 500;
+      text-transform: uppercase;
+      color: var(--main-color);
+    }
+
+    .heading h1 {
+      font-size: 2rem;
+      color: #2c3e50;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .project-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+
+    .project-image {
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .project-card:hover .project-image img {
+      transform: scale(1.05);
+    }
+
+    .project-info {
+      padding: 25px;
+    }
+
+    .project-info h3 {
+      font-size: 1.4rem;
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+
+    .project-location {
+      display: flex;
+      align-items: center;
+      color: #7f8c8d;
+      margin-bottom: 15px;
+    }
+
+    .project-location i {
+      margin-right: 8px;
+      color: #27ae60;
+    }
+
+    .project-stats {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat h4 {
+      color: #27ae60;
+      font-size: 1.2rem;
+      margin-bottom: 5px;
+    }
+
+    .stat p {
+      color: #7f8c8d;
+      font-size: 0.9rem;
+      margin: 0;
+    }
+
+    .progress-container {
+      margin-bottom: 20px;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .progress-bar {
+      height: 10px;
+      background: #ecf0f1;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #27ae60, #2ecc71);
+      border-radius: 5px;
+      width: 0%;
+      transition: width 1s ease-in-out;
+    }
+
+    .btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #27ae60, #2ecc71);
+      color: white;
+      padding: 12px 25px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(46, 204, 113, 0.2);
+    }
+
+    /* ===== Modals ===== */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      z-index: 1001;
+      overflow-y: auto;
+    }
+
+    .modal-content {
+      background: white;
+      margin: 50px auto;
+      max-width: 800px;
+      border-radius: 12px;
+      overflow: hidden;
+      animation: modalFadeIn 0.5s;
+    }
+
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: translateY(-50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .modal-header {
+      padding: 20px;
+      background: linear-gradient(135deg, #27ae60, #2ecc71);
+      color: white;
+      position: relative;
+    }
+
+    .modal-header h2 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .modal-body {
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .modal-row {
+      display: flex;
+      gap: 30px;
+    }
+
+    .modal-image {
+      flex: 1;
+    }
+
+    .modal-image img {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    .modal-details {
+      flex: 1;
+    }
+
+    .detail-item {
+      margin-bottom: 20px;
+    }
+
+    .detail-item h3 {
+      color: #2c3e50;
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    .detail-item p {
+      color: #7f8c8d;
+      line-height: 1.6;
+    }
+
+    .price-info {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 15px 0;
+    }
+
+    .price-info h4 {
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+
+    .price-info p {
+      margin: 5px 0;
+    }
+
+    /* Newsletter Section */
+    .newsletter {
+      background: #ffffff;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .box {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #f8f9fa;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .newsletter h2 {
+      font-size: 2rem;
+      color: #2e8b57;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    .newsletter input {
+      padding: 12px 20px;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      font-size: 1rem;
+      width: 60%;
+      max-width: 400px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .newsletter input:focus {
+      border-color: #2e8b57;
+    }
+
+    .newsletter-btn {
+      padding: 12px 25px;
+      background: #2e8b57;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .newsletter-btn:hover {
+      background: #3aa76d;
+    }
+
+    /* Footer */
+    .copyright {
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: white;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    .copyright span {
+      font-family: 'Turret Road';
+      font-weight: 600;
+    }
+
+    .social {
+      display: flex;
+      gap: 15px;
+    }
+
+    .social a {
+      color: #2c3e50;
+      font-size: 1.2rem;
+      transition: color 0.3s;
+    }
+
+    .social a:hover {
+      color: #27ae60;
+    }
+
+    /* ===== Responsive Design ===== */
+    @media (max-width: 991px) {
+      header {
+        padding: 18px 40px;
+      }
+      section {
+        padding: 50px 40px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .investment-hero {
+        flex-direction: column;
+        padding: 50px 20px;
+      }
+      
+      .investment-text {
+        padding-right: 0;
+        margin-bottom: 30px;
+      }
+      
+      .investment-stats {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .modal-row {
+        flex-direction: column;
+      }
+      
+      .newsletter-form {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .newsletter input {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+      
+      .newsletter-btn {
+        width: 100%;
+      }
+
+      #menu-icon {
+        display: block;
+      }
+
+      .navbar {
+        position: absolute;
+        top: -500px;
+        left: 0;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        background: #FFFFFF;
+        box-shadow: 0 4px 4px rgba(0, 0, 0, .1);
+        transition: .2s ease;
+        text-align: left;
+      }
+
+      .navbar.active {
+        top: 100%;
+      }
+
+      .navbar a {
+        padding: 1rem;
+        border-left: 2px solid var(--main-color);
+        margin: 1rem;
+        display: block;
+      }
+
+      .navbar a:hover {
+        color: #FFFFFF;
+        background: var(--main-color);
+        border: none;
+      }
+
+      .navbar a::after {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header {
+        padding: 11px 20px;
+      }
+
+      .investment-text h1 {
+        font-size: 2rem;
+      }
+
+      .box {
+        padding: 30px 20px;
+      }
+      
+      .newsletter h2 {
+        font-size: 1.8rem;
+      }
+
+      .copyright {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <a href="/" class="logo"><img src="https://rb.gy/ss3as9" alt="logo" /></a>
+    <i class='bx bx-menu' id="menu-icon"></i>
+    <ul class="navbar">
+      <li><a href="/">Home</a></li>
+      <li><a href="/statistics">Statistics</a></li>
+      <li><a href="/seasons">Seasons</a></li>
+      <li><a href="/tours">Active Tours</a></li>
+    </ul>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="investment-hero">
+      <div class="investment-text">
+        <h1>Explore Europe with Confidence</h1>
+        <p>Discover the most visited countries, hidden gems, and trending travel destinations across Europe. Our travel experts curate the best deals and must-see places to make your journey unforgettable.</p>
+        
+        <div class="investment-stats">
+          <div class="stat-item">
+            <h3>500K+</h3>
+            <p>Happy Travelers Served Every Year</p>
+          </div>
+          <div class="stat-item">
+            <h3>20+</h3>
+            <p>Top European Destinations Offered</p>
+          </div>
+          <div class="stat-item">
+            <h3>4.9★ Rating</h3>
+            <p>Based on 12,000+ Customer Reviews</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="investment-image">
+        <img src="https://minthost.ru/wp-content/uploads/2021/08/top-10-dostoprimechatelnostej-evropy.jpg.webp" alt="European Travel">
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects">
+      <div class="heading">
+        <span>European Travel Campaign</span>
+        <h1>Top Travel Destinations</h1>
+      </div>
+
+      <div class="projects-grid">
+        <!-- Destination 1: Santorini -->
+        <div class="project-card" onclick="openModal('santorini')">
+          <div class="project-image">
+            <img src="https://static.wixstatic.com/media/81b99f_df5e9da19f464d0bb96bc15670b9d4b1~mv2.jpg/v1/crop/x_0,y_121,w_2738,h_1583/fill/w_602,h_348,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/dreamstime_l_146011399.jpg" alt="Santorini">
+          </div>
+          <div class="project-info">
+            <h3>Santorini, Greece</h3>
+            <div class="project-location">
+              <i class="ri-map-pin-line"></i>
+              <span>Aegean Sea</span>
+            </div>
+            <div class="project-stats">
+              <div class="stat"><h4>€3.5M</h4><p>Tourism Revenue</p></div>
+              <div class="stat"><h4>10.7%</h4><p>Growth</p></div>
+              <div class="stat"><h4>2,800+</h4><p>Visitors/Month</p></div>
+            </div>
+            <div class="progress-container">
+              <div class="progress-label"><span>Popularity</span><span>92%</span></div>
+              <div class="progress-bar"><div class="progress-fill" style="width: 92%"></div></div>
+            </div>
+           <!-- В каждом модальном окне замените кнопку Book This Tour на: -->
+<button class="btn" style="width: 100%;" onclick="event.stopPropagation(); bookTour('santorini')">Book Now</button>
+          </div>
+        </div>
+
+        <!-- Destination 2: Malta -->
+        <div class="project-card" onclick="openModal('malta')">
+          <div class="project-image">
+            <img src="https://relax-yachting.com/images/Malta/marshrut_malta5.jpg" alt="Malta">
+          </div>
+          <div class="project-info">
+            <h3>Malta</h3>
+            <div class="project-location">
+              <i class="ri-map-pin-line"></i>
+              <span>Mediterranean Sea</span>
+            </div>
+            <div class="project-stats">
+              <div class="stat"><h4>€2.8M</h4><p>Tourism Revenue</p></div>
+              <div class="stat"><h4>9.2%</h4><p>Growth</p></div>
+              <div class="stat"><h4>2,200+</h4><p>Visitors/Month</p></div>
+            </div>
+            <div class="progress-container">
+              <div class="progress-label"><span>Popularity</span><span>87%</span></div>
+              <div class="progress-bar"><div class="progress-fill" style="width: 87%"></div></div>
+            </div>
+            <button class="btn" style="width: 100%;" onclick="event.stopPropagation(); bookTour('malta')">Book Now</button>
+          </div>
+        </div>
+
+        <!-- Destination 3: Preikestolen -->
+        <div class="project-card" onclick="openModal('preikestolen')">
+          <div class="project-image">
+            <img src="https://yaturisto.ru/wp-content/uploads/2019/03/image-8-e1551713874892.jpg" alt="Preikestolen">
+          </div>
+          <div class="project-info">
+            <h3>Preikestolen, Norway</h3>
+            <div class="project-location">
+              <i class="ri-map-pin-line"></i>
+              <span>Western Norway</span>
+            </div>
+            <div class="project-stats">
+              <div class="stat"><h4>€1.9M</h4><p>Tourism Revenue</p></div>
+              <div class="stat"><h4>8.3%</h4><p>Growth</p></div>
+              <div class="stat"><h4>1,700+</h4><p>Visitors/Month</p></div>
+            </div>
+            <div class="progress-container">
+              <div class="progress-label"><span>Popularity</span><span>75%</span></div>
+              <div class="progress-bar"><div class="progress-fill" style="width: 75%"></div></div>
+            </div>
+            <button class="btn" style="width: 100%;">Book Now</button>
+          </div>
+        </div>
+
+        <!-- Destination 4: Madeira -->
+        <div class="project-card" onclick="openModal('madeira')">
+          <div class="project-image">
+            <img src="https://btblady.com/_nw/310/s77946330.jpg" alt="Madeira">
+          </div>
+          <div class="project-info">
+            <h3>Madeira, Portugal</h3>
+            <div class="project-location">
+              <i class="ri-map-pin-line"></i>
+              <span>Atlantic Ocean</span>
+            </div>
+            <div class="project-stats">
+              <div class="stat"><h4>€2.6M</h4><p>Tourism Revenue</p></div>
+              <div class="stat"><h4>9.9%</h4><p>Growth</p></div>
+              <div class="stat"><h4>1,900+</h4><p>Visitors/Month</p></div>
+            </div>
+            <div class="progress-container">
+              <div class="progress-label"><span>Popularity</span><span>80%</span></div>
+              <div class="progress-bar"><div class="progress-fill" style="width: 80%"></div></div>
+            </div>
+            <button class="btn" style="width: 100%;">Book Now</button>
+          </div>
+        </div>
+
+        <!-- Destination 5: Lake Bled -->
+        <div class="project-card" onclick="openModal('lake-bled')">
+          <div class="project-image">
+            <img src="https://wall-style.com.ua/tmp/cache/images/f2/509/f2509b2665e81cb4a12906d501b229ab.jpg" alt="Lake Bled">
+          </div>
+          <div class="project-info">
+            <h3>Lake Bled, Slovenia</h3>
+            <div class="project-location">
+              <i class="ri-map-pin-line"></i>
+              <span>Julian Alps</span>
+            </div>
+            <div class="project-stats">
+              <div class="stat"><h4>€2.2M</h4><p>Tourism Revenue</p></div>
+              <div class="stat"><h4>8.5%</h4><p>Growth</p></div>
+              <div class="stat"><h4>1,300+</h4><p>Visitors/Month</p></div>
+            </div>
+            <div class="progress-container">
+              <div class="progress-label"><span>Popularity</span><span>68%</span></div>
+              <div class="progress-bar"><div class="progress-fill" style="width: 68%"></div></div>
+            </div>
+            <button class="btn" style="width: 100%;">Book Now</button>
+          </div>
+        </div>
+
+        <!-- Destination 6: Amalfi Coast -->
+        <div class="project-card" onclick="openModal('amalfi')">
+          <div class="project-image">
+            <img src="https://avatars.mds.yandex.net/i?id=8f7185c50c69019540c6be7cfe9374c464b7f94b-5219859-images-thumbs&n=13" alt="Amalfi Coast">
+          </div>
+          <div class="project-info">
+            <h3>Amalfi Coast, Italy</h3>
+            <div class="project-location">
+              <i class="ri-map-pin-line"></i>
+              <span>Campania Region</span>
+            </div>
+            <div class="project-stats">
+              <div class="stat"><h4>€3.0M</h4><p>Tourism Revenue</p></div>
+              <div class="stat"><h4>11.0%</h4><p>Growth</p></div>
+              <div class="stat"><h4>2,500+</h4><p>Visitors/Month</p></div>
+            </div>
+            <div class="progress-container">
+              <div class="progress-label"><span>Popularity</span><span>89%</span></div>
+              <div class="progress-bar"><div class="progress-fill" style="width: 89%"></div></div>
+            </div>
+            <button class="btn" style="width: 100%;">Book Now</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+      <h2>Discover Europe's Top Spots</h2>
+      <div class="box">
+        <input type="email" id="newsletter-email" placeholder="Enter your email" required />
+        <button class="btn" onclick="sendNewsletterEmail()">Get Deals</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <div class="copyright">
+    <p>&#169; <span>Wander Europe</span> All rights reserved</p>
+    <div class="social">
+      <a href="https://akezhanyergali.netlify.app/"><i class="ri-facebook-fill"></i></a>
+      <a href="https://akezhanyergali.netlify.app/"><i class="ri-twitter-x-line"></i></a>
+      <a href="https://akezhanyergali.netlify.app/"><i class="ri-instagram-line"></i></a>
+    </div>
+  </div>
+
+  <!-- Santorini Modal -->
+  <div id="santorini-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Santorini Luxury Tour Package</h2>
+        <span class="close-modal" onclick="closeModal('santorini')">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div class="modal-row">
+          <div class="modal-image">
+            <img src="https://static.wixstatic.com/media/81b99f_df5e9da19f464d0bb96bc15670b9d4b1~mv2.jpg/v1/crop/x_0,y_121,w_2738,h_1583/fill/w_602,h_348,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/dreamstime_l_146011399.jpg" alt="Santorini, Greece">
+          </div>
+          <div class="modal-details">
+            <div class="detail-item">
+              <h3>Location</h3>
+              <p>Santorini is located in the southern Aegean Sea, about 200 km southeast of Greece's mainland. It is the largest island of a small, circular archipelago which bears the same name and is the remnant of a volcanic caldera.</p>
+            </div>
+            <div class="detail-item">
+              <h3>Tour Duration</h3>
+              <p>7 days and 6 nights of unforgettable experience in one of the most beautiful islands in the world.</p>
+            </div>
+            <div class="detail-item">
+              <h3>Hotel Type</h3>
+              <p>5-star luxury hotels with breathtaking caldera views, private pools, and premium amenities.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="detail-item">
+          <h3>Pricing</h3>
+          <div class="price-info">
+            <p><strong>Within Europe:</strong> €2,500 per person</p>
+            <p><strong>Central Asia:</strong> €2,800 per person</p>
+            <p><strong>Other regions:</strong> Please contact for customized pricing</p>
+          </div>
+        </div>
+        
+        <div class="detail-item">
+          <h3>Tour Summary</h3>
+          <p>You will be greeted at the airport and transferred to your luxury hotel where breakfast and lunch are included. Enjoy various activities including beach visits, yacht cruises, wine tasting at local vineyards, exploring traditional villages, and witnessing the world-famous Santorini sunset from Oia. Our package also includes guided tours to archaeological sites and opportunities for water sports.</p>
+        </div>
+        
+       <button class="btn" style="margin: 0 auto; display: block;" onclick="bookTour('santorini')">Book This Tour</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Malta Modal -->
+  <div id="malta-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Malta Cultural Experience Tour</h2>
+        <span class="close-modal" onclick="closeModal('malta')">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div class="modal-row">
+          <div class="modal-image">
+            <img src="https://relax-yachting.com/images/Malta/marshrut_malta5.jpg" alt="Malta">
+          </div>
+          <div class="modal-details">
+            <div class="detail-item">
+              <h3>Location</h3>
+              <p>Malta is an archipelago in the central Mediterranean between Sicily and the North African coast. It's a nation known for historic sites related to a succession of rulers including the Romans, Moors, Knights of Saint John, French and British.</p>
+            </div>
+            <div class="detail-item">
+              <h3>Tour Duration</h3>
+              <p>8 days and 7 nights exploring the rich history and stunning coastline of Malta.</p>
+            </div>
+            <div class="detail-item">
+              <h3>Hotel Type</h3>
+              <p>4-star boutique hotels in Valletta and traditional guesthouses in Gozo with authentic Maltese architecture.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="detail-item">
+          <h3>Pricing</h3>
+          <div class="price-info">
+            <p><strong>Within Europe:</strong> €1,800 per person</p>
+            <p><strong>Central Asia:</strong> €2,100 per person</p>
+            <p><strong>Other regions:</strong> Please contact for customized pricing</p>
+          </div>
+        </div>
+        
+        <div class="detail-item">
+          <h3>Tour Summary</h3>
+          <p>Airport transfer included upon arrival. Accommodation with breakfast. Guided tours of Valletta's historic sites, Mdina's ancient streets, and the Megalithic Temples. Boat trips to the Blue Lagoon in Comino and traditional fishing villages. Experience Maltese cuisine with included dinners at local restaurants.</p>
+        </div>
+        
+        <button class="btn" style="margin: 0 auto; display: block;" onclick="bookTour('malta')">Book This Tour</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Preikestolen Modal -->
+  <div id="preikestolen-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Preikestolen Adventure Tour</h2>
+        <span class="close-modal" onclick="closeModal('preikestolen')">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div class="modal-row">
+          <div class="modal-image">
+            <img src="https://yaturisto.ru/wp-content/uploads/2019/03/image-8-e1551713874892.jpg" alt="Preikestolen">
+          </div>
+          <div class="modal-details">
+            <div class="detail-item">
+              <h3>Location</h3>
+              <p>Preikestolen (Pulpit Rock) is a steep cliff which rises 604 metres above Lysefjorden in Forsand, Ryfylke, Norway. The top of the cliff is approximately 25 by 25 metres, almost flat, and is a famous tourist attraction in Norway.</p>
+            </div>
+            <div class="detail-item">
+              <h3>Tour Duration</h3>
+              <p>5 days and 4 nights of breathtaking Norwegian nature and adventure.</p>
+            </div>
+            <div class="detail-item">
+              <h3>Hotel Type</h3>
+              <p>Comfortable 3-star hotels and mountain lodges with stunning fjord views and authentic Norwegian hospitality.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="detail-item">
+          <h3>Pricing</h3>
+          <div class="price-info">
+            <p><strong>Within Europe:</strong> €1,200 per person</p>
+            <p><strong>Central Asia:</strong> €1,500 per person</p>
+            <p><strong>Other regions:</strong> Please contact for customized pricing</p>
+          </div>
+        </div>
+        
+        <div class="detail-item">
+          <h3>Tour Summary</h3>
+          <p>Airport pickup from Stavanger included. Guided hike to Preikestolen with experienced local guides. Fjord cruise on Lysefjorden. Visit to Norwegian Petroleum Museum. All breakfasts and 3 dinners included. Optional activities: kayaking in the fjords, visiting traditional Norwegian villages, and experiencing the midnight sun (seasonal).</p>
+        </div>
+        
+       <button class="btn" style="width: 100%;" onclick="event.stopPropagation(); bookTour('preikestolen')">Book Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Madeira Modal -->
+  <div id="madeira-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Madeira Island Paradise Tour</h2>
+        <span class="close-modal" onclick="closeModal('madeira')">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div class="modal-row">
+          <div class="modal-image">
+            <img src="https://btblady.com/_nw/310/s77946330.jpg" alt="Madeira">
+          </div>
+          <div class="modal-details">
+            <div class="detail-item">
+              <h3>Location</h3>
+              <p>Madeira is a Portuguese archipelago situated in the North Atlantic Ocean, southwest of Portugal. It's known for its lush green landscapes, flower gardens, and year-round mild climate.</p>
+            </div>
+            <div class="detail-item">
+              <h3>Tour Duration</h3>
+              <p>6 days and 5 nights exploring the beautiful island of Madeira and its natural wonders.</p>
+            </div>
+            <div class="detail-item">
+              <h3>Hotel Type</h3>
+              <p>4-star hotels with beautiful ocean views and traditional Portuguese architecture, featuring outdoor pools and gardens.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="detail-item">
+          <h3>Pricing</h3>
+          <div class="price-info">
+            <p><strong>Within Europe:</strong> €1,600 per person</p>
+            <p><strong>Central Asia:</strong> €1,900 per person</p>
+            <p><strong>Other regions:</strong> Please contact for customized pricing</p>
+          </div>
+        </div>
+        
+        <div class="detail-item">
+          <h3>Tour Summary</h3>
+          <p>Airport transfer included upon arrival. Accommodation with breakfast included. Guided tours of Funchal's historic center, Monte Palace Tropical Garden, and traditional levada walks. Cable car ride to Monte and thrilling toboggan ride down. Boat trip to see dolphins and whales (seasonal). Wine tasting at local vineyards featuring Madeira's famous fortified wine.</p>
+        </div>
+        
+        <button class="btn" style="width: 100%;" onclick="event.stopPropagation(); bookTour('madeira')">Book Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lake Bled Modal -->
+  <div id="lake-bled-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Lake Bled Alpine Retreat Tour</h2>
+        <span class="close-modal" onclick="closeModal('lake-bled')">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div class="modal-row">
+          <div class="modal-image">
+            <img src="https://wall-style.com.ua/tmp/cache/images/f2/509/f2509b2665e81cb4a12906d501b229ab.jpg" alt="Lake Bled">
+          </div>
+          <div class="modal-details">
+            <div class="detail-item">
+              <h3>Location</h3>
+              <p>Lake Bled is a lake in the Julian Alps of the Upper Carniolan region of northwestern Slovenia, where it adjoins the town of Bled. The area is a popular tourist destination.</p>
+            </div>
+            <div class="detail-item">
+              <h3>Tour Duration</h3>
+              <p>4 days and 3 nights in the picturesque Alpine setting of Lake Bled.</p>
+            </div>
+            <div class="detail-item">
+              <h3>Hotel Type</h3>
+              <p>Charming 3-star hotels and guesthouses with lake views, traditional Slovenian hospitality, and easy access to outdoor activities.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="detail-item">
+          <h3>Pricing</h3>
+          <div class="price-info">
+            <p><strong>Within Europe:</strong> €900 per person</p>
+            <p><strong>Central Asia:</strong> €1,200 per person</p>
+            <p><strong>Other regions:</strong> Please contact for customized pricing</p>
+          </div>
+        </div>
+        
+        <div class="detail-item">
+          <h3>Tour Summary</h3>
+          <p>Transfer from Ljubljana airport included. Accommodation with breakfast. Traditional pletna boat ride to Bled Island. Visit to Bled Castle with panoramic views. Hiking in the surrounding Triglav National Park. Tasting of the famous Bled cream cake. Optional activities: swimming in the lake, cycling around the lake, and visiting Vintgar Gorge.</p>
+        </div>
+        
+       <button class="btn" style="width: 100%;" onclick="event.stopPropagation(); bookTour('lake-bled')">Book Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Amalfi Coast Modal -->
+  <div id="amalfi-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Amalfi Coast Italian Escape Tour</h2>
+        <span class="close-modal" onclick="closeModal('amalfi')">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div class="modal-row">
+          <div class="modal-image">
+            <img src="https://avatars.mds.yandex.net/i?id=8f7185c50c69019540c6be7cfe9374c464b7f94b-5219859-images-thumbs&n=13" alt="Amalfi Coast">
+          </div>
+          <div class="modal-details">
+            <div class="detail-item">
+              <h3>Location</h3>
+              <p>The Amalfi Coast is a 50-kilometer stretch of coastline along the southern edge of Italy's Sorrentine Peninsula, in the Campania region. It's a popular holiday destination with steep cliffs and a rugged shoreline dotted with small beaches and pastel-colored fishing villages.</p>
+            </div>
+            <div class="detail-item">
+              <h3>Tour Duration</h3>
+              <p>7 days and 6 nights exploring the stunning Amalfi Coast and its charming towns.</p>
+            </div>
+            <div class="detail-item">
+              <h3>Hotel Type</h3>
+              <p>4-star hotels with spectacular sea views, Mediterranean architecture, and authentic Italian charm.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="detail-item">
+          <h3>Pricing</h3>
+          <div class="price-info">
+            <p><strong>Within Europe:</strong> €2,200 per person</p>
+            <p><strong>Central Asia:</strong> €2,500 per person</p>
+            <p><strong>Other regions:</strong> Please contact for customized pricing</p>
+          </div>
+        </div>
+        
+        <div class="detail-item">
+          <h3>Tour Summary</h3>
+          <p>Transfer from Naples airport included. Accommodation with breakfast. Guided tours of Positano, Amalfi, and Ravello. Boat trip along the coast to see the famous Fiordo di Furore. Visit to the historic ruins of Pompeii. Cooking class to learn authentic Italian cuisine. Free time for shopping and exploring the picturesque towns.</p>
+        </div>
+        
+       <button class="btn" style="width: 100%;" onclick="event.stopPropagation(); bookTour('amalfi')">Book Now</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Mobile menu toggle
+    const menuIcon = document.getElementById('menu-icon');
+    const navbar = document.querySelector('.navbar');
+    
+    menuIcon.addEventListener('click', () => {
+      navbar.classList.toggle('active');
+    });
+
+    // Modal functions
+    function openModal(destination) {
+      const modal = document.getElementById(`${destination}-modal`);
+      if (modal) {
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeModal(destination) {
+      const modal = document.getElementById(`${destination}-modal`);
+      if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      }
+    }
+
+    // Close modal when clicking outside
+    window.addEventListener('click', (event) => {
+      const modals = document.querySelectorAll('.modal');
+      modals.forEach(modal => {
+        if (event.target === modal) {
+          modal.style.display = 'none';
+          document.body.style.overflow = 'auto';
+        }
+      });
+    });
+
+    // Newsletter function
+    function sendNewsletterEmail() {
+      const email = document.getElementById('newsletter-email').value;
+      if (email) {
+        alert(`Thank you for subscribing with ${email}! We'll send you the best travel deals soon.`);
+        document.getElementById('newsletter-email').value = '';
+      } else {
+        alert('Please enter your email address.');
+      }
+    }
+
+    // Animate progress bars on scroll
+    function animateProgressBars() {
+      const progressBars = document.querySelectorAll('.progress-fill');
+      progressBars.forEach(bar => {
+        const width = bar.style.width;
+        bar.style.width = '0%';
+        setTimeout(() => {
+          bar.style.width = width;
+        }, 300);
+      });
+    }
+
+    // Function to handle booking tour
+function bookTour(destination) {
+    console.log('Booking tour:', destination); // Для отладки
+    
+    // Save the selected tour to localStorage
+    localStorage.setItem('selectedTour', destination);
+    
+    // Redirect to booking page
+    window.location.href = '/booking';
+}
+    // Initialize animations when page loads
+    window.addEventListener('load', () => {
+      animateProgressBars();
+    });
+  </script>
+</body>
+</html>

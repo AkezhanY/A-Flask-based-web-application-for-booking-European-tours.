@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Untitled</title>
+  <link rel="stylesheet" href="/static/seasons.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tourism Seasons</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header>
+    <a href="/" class="logo"><img src="https://rb.gy/ss3as9" alt="logo" /></a>
+    <i class='bx bx-menu' id="menu-icon"></i>
+    <ul class="navbar">
+      <li><a href="/">Home</a></li>
+      <li><a href="/statistics" class="active">Statistics</a></li>
+      <li><a href="/seasons">Seasons</a></li>
+      <li><a href="/tours">Active Tours</a></li>
+    </ul>
+  </header>
+
+  <main>
+    <div class="heading">
+      <h1>Top Tourist Countries by Season</h1>
+      <p>Seasonal Tourism Trends and Top Countries (2024-2025)</p>
+    </div>
+
+    <div class="chart-container">
+      <div class="chart-wrapper">
+        <div class="chart-description">
+          <strong>Autumn & Winter:</strong> Top countries visited during autumn and winter seasons.
+        </div>
+        <canvas id="fallWinterChart"></canvas>
+      </div>
+      <div class="chart-wrapper">
+        <div class="chart-description">
+          <strong>Spring & Summer:</strong> Top countries visited during spring and summer seasons.
+        </div>
+        <canvas id="springSummerChart"></canvas>
+      </div>
+    </div>
+
+    <div class="map-buttons-container">
+      <div class="season-buttons">
+        <button onclick="showSeason('winter')">❄️ Winter</button>
+        <button onclick="showSeason('autumn')">🍂 Autumn</button>
+        <button onclick="showSeason('spring')">🌸 Spring</button>
+        <button onclick="showSeason('summer')">☀️ Summer</button>
+      </div>
+
+      <div id="tourismMap"></div>
+
+      <div class="map-info">
+        <div class="zone-info active" id="winterInfo">
+          <h3>Winter Highlights</h3>
+          <p><strong>Popular Destinations:</strong> Chamonix, St. Moritz, Innsbruck</p>
+          <p><strong>Countries:</strong> France, Switzerland, Austria</p>
+          <p><strong>Attractions:</strong> World-class ski resorts, alpine villages, winter festivals.</p>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX5S2UUU5Iq2iIV0QKnODe4RQOJB4xfB8Cpw&s" alt="Winter landscape" class="season-image">
+        </div>
+        <div class="zone-info" id="autumnInfo">
+          <h3>Autumn Highlights</h3>
+          <p><strong>Popular Destinations:</strong> Florence, Prague, Edinburgh</p>
+          <p><strong>Countries:</strong> Italy, Czech Republic, Scotland</p>
+          <p><strong>Attractions:</strong> Vibrant fall foliage, historic cities, cultural festivals.</p>
+          <img src="https://www.goworldtravel.com/wp-content/uploads/2023/09/2.-Edinburgh-with-Calton-Hill-against-autumn-leaves-in-Scotland.-By-Tomas-Marek-scaled.jpeg" alt="Autumn foliage" class="season-image">
+        </div>
+        <div class="zone-info" id="springInfo">
+          <h3>Spring Highlights</h3>
+          <p><strong>Popular Destinations:</strong> Amsterdam, Paris, Vienna</p>
+          <p><strong>Countries:</strong> Netherlands, France, Austria</p>
+          <p><strong>Attractions:</strong> Tulip fields, romantic cities, music festivals.</p>
+          <img src="https://www.netherlands-tourism.com/wp-content/uploads/2015/03/Tulips-in-Holland.jpg" alt="Spring tulips" class="season-image">
+        </div>
+        <div class="zone-info" id="summerInfo">
+          <h3>Summer Highlights</h3>
+          <p><strong>Popular Destinations:</strong> Barcelona, Athens, Dubrovnik</p>
+          <p><strong>Countries:</strong> Spain, Greece, Croatia</p>
+          <p><strong>Attractions:</strong> Sunny beaches, ancient ruins, coastal towns.</p>
+          <img src="https://www.traveltalktours.com/wp-content/smush-webp/2022/05/Greece-Newsletter-squares-2-1024x711.png.webp" alt="Summer beach" class="season-image">
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="copyright">
+    <p>© <span>Wander Europe</span> All rights reserved</p>
+    <div class="social">
+      <a href="https://akezhanyergali.netlify.app/"><i class="ri-facebook-fill"></i></a>
+      <a href="https://akezhanyergali.netlify.app/"><i class="ri-twitter-x-line"></i></a>
+      <a href="https://akezhanyergali.netlify.app/"><i class="ri-instagram-line"></i></a>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const menu = document.querySelector('#menu-icon');
+    const navbar = document.querySelector('.navbar');
+    menu.addEventListener('click', () => {
+      menu.classList.toggle('bx-x');
+      navbar.classList.toggle('active');
+    });
+    window.addEventListener('scroll', () => {
+      menu.classList.remove('bx-x');
+      navbar.classList.remove('active');
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const fallWinterChart = new Chart(document.getElementById('fallWinterChart'), {
+        type: 'bar',
+        data: {
+          labels: ['France', 'Switzerland', 'Austria', 'Germany'],
+          datasets: [{
+            label: 'Visitors (million)',
+            data: [20, 15, 18, 12],
+            backgroundColor: ['#3b82f6', '#10b981', '#f59e0b', '#6366f1']
+          }]
+        },
+        options: {
+          indexAxis: 'x',
+          plugins: { legend: { display: false } },
+          scales: {
+            y: { beginAtZero: true, title: { display: true, text: 'Visitors (million)' }, max: 25 }
+          }
+        }
+      });
+
+      const springSummerChart = new Chart(document.getElementById('springSummerChart'), {
+        type: 'bar',
+        data: {
+          labels: ['Spain', 'Italy', 'Greece', 'Portugal'],
+          datasets: [{
+            label: 'Visitors (million)',
+            data: [30, 25, 22, 18],
+            backgroundColor: ['#ec4899', '#0ea5e9', '#10b981', '#f59e0b']
+          }]
+        },
+        options: {
+          indexAxis: 'x',
+          plugins: { legend: { display: false } },
+          scales: {
+            y: { beginAtZero: true, title: { display: true, text: 'Visitors (million)' }, max: 35 }
+          }
+        }
+      });
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const map = L.map('tourismMap', {
+        center: [54.0, 10.0],
+        zoom: 4,
+        zoomControl: true,
+        scrollWheelZoom: false
+      });
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        maxZoom: 18
+      }).addTo(map);
+
+      const seasonCities = {
+        winter: [
+          { name: "Chamonix", lat: 45.9237, lng: 6.8694, desc: "Famous for skiing and Mont Blanc views" },
+          { name: "St. Moritz", lat: 46.4989, lng: 9.8433, desc: "Luxury ski resort with winter sports" },
+          { name: "Innsbruck", lat: 47.2689, lng: 11.4045, desc: "Alpine city with historic charm" }
+        ],
+        autumn: [
+          { name: "Florence", lat: 43.7696, lng: 11.2558, desc: "Renaissance art and fall festivals" },
+          { name: "Prague", lat: 50.0755, lng: 14.4378, desc: "Historic charm with autumn colors" },
+          { name: "Edinburgh", lat: 55.9533, lng: -3.1883, desc: "Cultural festivals and scenic beauty" }
+        ],
+        spring: [
+          { name: "Amsterdam", lat: 52.3676, lng: 4.9041, desc: "Tulip fields and vibrant canals" },
+          { name: "Paris", lat: 48.8566, lng: 2.3522, desc: "Romantic springtime and blossoms" },
+          { name: "Vienna", lat: 48.2082, lng: 16.3738, desc: "Classical music and spring gardens" }
+        ],
+        summer: [
+          { name: "Barcelona", lat: 41.3851, lng: 2.1734, desc: "Beaches and Gaudí architecture" },
+          { name: "Athens", lat: 37.9838, lng: 23.7275, desc: "Ancient ruins and sunny weather" },
+          { name: "Dubrovnik", lat: 42.6507, lng: 18.0944, desc: "Stunning Adriatic coast" }
+        ]
+      };
+
+      let currentMarkers = [];
+
+      function updateInfo(season) {
+        document.querySelectorAll('.zone-info').forEach(info => {
+          info.classList.toggle('active', info.id === `${season}Info`);
+        });
+      }
+
+      function showSeason(season) {
+        currentMarkers.forEach(marker => map.removeLayer(marker));
+        currentMarkers = [];
+
+        const cities = seasonCities[season] || [];
+        cities.forEach(city => {
+          const marker = L.marker([city.lat, city.lng], {
+            icon: L.divIcon({
+              className: 'custom-marker',
+              html: `<div style="background-color: var(--main-color); width: 12px; height: 12px; border-radius: 50%; border: 2px solid white;"></div>`,
+              iconSize: [16, 16],
+              iconAnchor: [8, 8]
+            })
+          })
+            .addTo(map)
+            .bindPopup(`<b>${city.name}</b><br>${city.desc}<br>${season.charAt(0).toUpperCase() + season.slice(1)} destination`);
+          currentMarkers.push(marker);
+        });
+
+        if (currentMarkers.length > 0) {
+          const group = L.featureGroup(currentMarkers);
+          map.fitBounds(group.getBounds(), { padding: [50, 50], maxZoom: 6 });
+        }
+
+        document.querySelectorAll('.season-buttons button').forEach(btn => {
+          btn.classList.toggle('active', btn.textContent.includes(season.charAt(0).toUpperCase() + season.slice(1)));
+        });
+
+        updateInfo(season);
+      }
+
+      document.querySelectorAll('.season-buttons button').forEach(button => {
+        button.addEventListener('click', () => {
+          const season = button.textContent.toLowerCase().split(' ')[1];
+          showSeason(season);
+        });
+      });
+
+      showSeason('winter');
+    });
+  </script>
+</body>
+</html>
+  
+</body>
+</html>
