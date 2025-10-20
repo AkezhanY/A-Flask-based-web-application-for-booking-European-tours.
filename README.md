@@ -4,6 +4,8 @@ Wander Europe is a full-featured web application for booking European tours, dev
 
 Live application: https://a-flask-based-web-application-for-7cdv.onrender.com
 
+https://a-flask-based-web-application.netlify.app/
+
 🛠 Technology Stack
 
 Backend:
